@@ -46,7 +46,7 @@ const promptUser = () =>
       },
       {
         type: 'input',
-        name: 'questions',
+        name: 'github',
         message: 'Provide your Github username so readers can contact you (link will be generated with your username)',
       },
 
@@ -92,8 +92,12 @@ const promptUser = () =>
    ? `[GitHub Profile](https://github.com/${githubUsername})`
    : '';
 
-     // Generate the table of contents
-  const tableOfContents = `
+    // Generate the README content with the license badge and notice
+    return `
+  # ${answers.name}
+  
+  ${licenseBadge} <!-- License Badge -->
+
   ## Table of Contents
   - [Description](#description)
   - [Installation](#installation)
@@ -102,16 +106,6 @@ const promptUser = () =>
   - [Contributing](#contributing)
   - [Tests](#tests)
   - [Questions](#questions)
-  `;
-
-  
-    // Generate the README content with the license badge and notice
-    return `
-  # ${answers.name}
-  
-  ${licenseBadge} <!-- License Badge -->
-
-  ${tableOfContents} <!-- Table of Contents -->
   
   ## Description
   ${answers.description}
@@ -132,8 +126,7 @@ const promptUser = () =>
   ${answers.tests}
   
   ## Questions
-  - If you have any questions or feedback, please reach out to me via email at [Your Email Address] or
-    through my [GitHub Profile](${githubLink}).
+  - If you have any questions or feedback, please reach out to me through my (${githubLink}).
   `;
   };
 
