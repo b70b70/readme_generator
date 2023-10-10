@@ -20,7 +20,7 @@ const promptUser = () =>
     },
     {
       type: 'input',
-      name: 'Installation',
+      name: 'installation',
       message: 'Name any softwares, libraries or dependencies that users need to have installed before they can use your project. ',
     },
     {
@@ -54,14 +54,28 @@ const promptUser = () =>
 
   //Define a function named generateREADME that takes the answers object as a parameter and constructs a README.md file content as a string
 const generateREADME = (answers) =>
-  ` ## ${answers.name} 
-  - ${answers.description}
-  - ${answers.installation} 
-  - ${answers.usage} 
-  # ${answers.license}
-    ${answers.contributing}
-    ${answers.tests}
-    ${answers.questions}`;
+`
+# ${answers.name}
+
+## Description
+${answers.description}
+
+## Installation
+${answers.installation}
+
+## Usage
+${answers.usage}
+
+${answers.license}
+
+## Contributing
+${answers.contributing}
+
+## Tests
+${answers.tests}
+
+${answers.questions}
+`;
 
 promptUser()
   // write the generated README content to a file named 'README.md' using the writeFileAsync function
