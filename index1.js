@@ -92,12 +92,26 @@ const promptUser = () =>
    ? `[GitHub Profile](https://github.com/${githubUsername})`
    : '';
 
+     // Generate the table of contents
+  const tableOfContents = `
+  ## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  `;
+
   
     // Generate the README content with the license badge and notice
     return `
   # ${answers.name}
   
   ${licenseBadge} <!-- License Badge -->
+
+  ${tableOfContents} <!-- Table of Contents -->
   
   ## Description
   ${answers.description}
