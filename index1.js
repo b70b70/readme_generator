@@ -47,7 +47,7 @@ const promptUser = () =>
       {
         type: 'input',
         name: 'questions',
-        message: 'Provide information on how users or contributors can reach out with questions or feedback. You can include contact information or direct them to an issue tracker or forum.',
+        message: 'Provide your Github username so readers can contact you (link will be generated with your username)',
       },
 
   ]);
@@ -83,6 +83,15 @@ const promptUser = () =>
           licenseNotice = '';
           break;
     }
+
+ // Ensure the GitHub username is provided and valid
+ const githubUsername = answers.github ? answers.github.trim() : '';
+
+ // Create a GitHub profile link if a valid GitHub username is provided
+ const githubLink = githubUsername
+   ? `[GitHub Profile](https://github.com/${githubUsername})`
+   : '';
+
   
     // Generate the README content with the license badge and notice
     return `
@@ -109,7 +118,8 @@ const promptUser = () =>
   ${answers.tests}
   
   ## Questions
-  ${answers.questions}
+  - If you have any questions or feedback, please reach out to me via email at [Your Email Address] or
+    through my [GitHub Profile](${githubLink}).
   `;
   };
 
