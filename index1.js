@@ -32,7 +32,7 @@ const promptUser = () =>
         type: 'list',
         name: 'license',
         message: 'Specify the license',
-        choices: ['MIT', 'Apache', 'GPL', 'EPL', 'roti']
+        choices: ['MIT', 'Apache', 'GPL', 'EPL']
       },
       {
         type: 'input',
@@ -53,29 +53,68 @@ const promptUser = () =>
   ]);
 
   //Define a function named generateREADME that takes the answers object as a parameter and constructs a README.md file content as a string
-const generateREADME = (answers) =>
-`
-# ${answers.name}
+  const generateREADME = (answers) => {
+    // Create a variable to store the license badge Markdown
+    let licenseBadge = '';
+  
+    // Create a variable to store the license notice Markdown
+    let licenseNotice = '';
+  
+    // Determine the license badge and notice based on the user's choice
+    switch (answers.license) {
+      case 'MIT':
+        licenseBadge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+        licenseNotice = 'This application is licensed under the [MIT License](https://opensource.org/licenses/MIT).';
+        break;
+      case 'Apache':
+        licenseBadge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
+        licenseNotice = 'This application is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0).';
+        break;
+        case 'GPL':
+          licenseBadge = '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+          licenseNotice = 'This application is licensed under the [GNU General Public License (GPL) v3](https://www.gnu.org/licenses/gpl-3.0).';
+          break;
+        case 'EPL':
+          licenseBadge = '[![License: EPL 2.0](https://img.shields.io/badge/License-EPL%202.0-red.svg)](https://opensource.org/licenses/EPL-2.0)';
+          licenseNotice = 'This application is licensed under the [Eclipse Public License (EPL) 2.0](https://opensource.org/licenses/EPL-2.0).';
+          break;
+        default:
+          licenseBadge = '';
+          licenseNotice = '';
+          break;
+    }
+  
+    // Generate the README content with the license badge and notice
+    return `
+  # ${answers.name}
+  
+  ${licenseBadge} <!-- License Badge -->
+  
+  ## Description
+  ${answers.description}
+  
+  ## Installation
+  ${answers.installation}
+  
+  ## Usage
+  ${answers.usage}
+  
+  ## License
+  ${licenseNotice} <!-- License Notice -->
+  
+  ## Contributing
+  ${answers.contributing}
+  
+  ## Tests
+  ${answers.tests}
+  
+  ## Questions
+  ${answers.questions}
+  `;
+  };
 
-## Description
-${answers.description}
 
-## Installation
-${answers.installation}
 
-## Usage
-${answers.usage}
-
-${answers.license}
-
-## Contributing
-${answers.contributing}
-
-## Tests
-${answers.tests}
-
-${answers.questions}
-`;
 
 promptUser()
   // write the generated README content to a file named 'README.md' using the writeFileAsync function
