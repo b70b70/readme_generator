@@ -9,10 +9,10 @@ The primary aim of this tool is to assist developers in crafting polished and ef
 ## Images
 
 This image shows running the node index1.js file in the terminal.
-![terminal](./preview1.png)
+![terminal](./assets/images/preview1.png)
 
 Sample generated README file.
-![sample-README-file](./preview2.png)
+![sample-README-file](/assets/images/preview2.png)
 
 ## Video walkthrough
 
